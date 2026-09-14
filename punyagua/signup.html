@@ -1,0 +1,150 @@
+<html>
+
+<head> 
+<title>PINCO - Sign Up</title>
+</head>
+
+<style>
+* {margin:0; padding:0; box-sizing:border-box;}
+
+body {
+background: linear-gradient(190deg, rgb(0,157,255), rgb(171,219,255));
+display:flex; justify-content:center; align-items:center;
+min-height:100vh;
+}
+
+.kotakdaftar {
+background:white; padding:30px; width:280px; border-radius:25px;
+text-align:center; box-shadow:0 0 20px 0 rgb(95,95,95);
+}
+
+h1 {font-family:coolvetica; color:#3f3f3f; font-size:26px;}
+h1 span {color:rgb(0,157,255); font-weight:bold;}
+
+p {font-family:coolvetica; color:#555; margin:8px 0 20px;}
+
+input {
+width:70%; padding:10px; margin-bottom:12px; border-radius:10px;
+border:2px solid rgb(156,214,251); outline:none; font-size:14px;
+transition:all 0.3s ease;
+}
+
+input:focus {
+border-color:rgb(0,157,255);
+box-shadow:0 0 0 4px rgba(0,157,255,0.2);
+}
+
+.peringatan {
+color:red; font-size:13px; margin:10px 0; font-family:coolvetica;
+display:none; line-height:1.4;
+}
+
+.tomboldaftar {
+background:rgb(0,157,255); color:white; border:none;
+padding:14px; border-radius:15px; font-weight:bold; font-size:16px;
+width:140px; margin:10px auto; cursor:pointer;
+box-shadow:0 0 10px 0 rgb(31,143,255);
+transition:all 0.3s ease;
+}
+
+.tomboldaftar:hover {
+background:rgb(0,130,211); transform:translateY(-3px);
+box-shadow:0 8px 20px rgba(0,101,203,0.4);
+}
+
+.tomboldaftar:active {transform:translateY(1px) scale(0.97);}
+
+.login-link {color:rgb(0,157,255); text-decoration:none;}
+.login-link:hover {color:rgb(0,130,211); text-decoration:underline;}
+
+.wadahakun {display:flex; justify-content:center; gap:15px; margin:15px 0;}
+
+.sosial {
+width:35px; height:35px; border-radius:10px;
+background:#d7f0ff; border:2px solid rgb(156,214,251);
+display:flex; align-items:center; justify-content:center;
+transition:all 0.3s ease; cursor:pointer;
+}
+
+.sosial:hover {background:#a8daf9; transform:translateY(-3px);}
+.sosial img {width:20px; height:20px;}
+</style>
+
+<body>
+
+<div class="kotakdaftar">
+
+<h1>Hello, <span>Pineco</span>!</h1>
+<p>Create your account</p>
+
+<input id="nama" type="text" placeholder="Full Name">
+<input id="email" type="email" placeholder="Enter your Email">
+<input id="password" type="password" placeholder="Create Password">
+<input id="ulangpass" type="password" placeholder="Repeat Password">
+
+<div class="peringatan" id="pesan"></div>
+
+<div class="wadahakun">
+
+<div class="sosial"><a href="#"><img src="google.png"></a></div>
+<div class="sosial"><a href="#"><img src="github.png"></a></div>
+<div class="sosial"><a href="#"><img src="discord.png"></a></div>
+<div class="sosial"><a href="#"><img src="apple.png"></a></div>
+
+</div>
+
+<p>Already have account? <a href="login.html" class="login-link">Log in</a></p>
+
+<button class="tomboldaftar" onclick="daftar()">SIGN UP</button>
+
+</div>
+
+<script>
+
+function daftar() {
+
+let nama = document.getElementById("nama").value.trim();
+let email = document.getElementById("email").value.trim();
+let password = document.getElementById("password").value;
+let ulangpass = document.getElementById("ulangpass").value;
+let pesan = document.getElementById("pesan");
+
+if (!nama || !email || !password || !ulangpass) {
+pesan.textContent = "⚠️ Harap isi SEMUA kolom!";
+pesan.style.display = "block";
+return;
+}
+
+if (password !== ulangpass) {
+pesan.textContent = "⚠️ Password tidak sama! Cek lagi.";
+pesan.style.display = "block";
+return;
+}
+
+let dataPengguna = JSON.parse(localStorage.getItem("akunPengguna")) || {};
+
+if (dataPengguna[email]) {
+pesan.textContent = "⚠️ Email ini sudah terdaftar! Silakan Login.";
+pesan.style.display = "block";
+return;
+}
+
+dataPengguna[email] = {
+nama:nama,
+password:password
+};
+
+localStorage.setItem("akunPengguna", JSON.stringify(dataPengguna));
+
+pesan.style.display = "none";
+
+alert("✅ DAFTAR BERHASIL!\n\nNama: " + nama + "\nEmail: " + email + "\n\nSilakan LOGIN sekarang!");
+
+window.location.href = "login.html";
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,229 @@
+```html
+<html>
+
+<head>
+<title>PINCO LOGIN</title>
+</head>
+
+<style>
+
+* {
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body {
+background:linear-gradient(190deg, rgb(0,157,255), rgb(171,219,255));
+justify-content:center;
+align-items:center;
+display:flex;
+min-height:100vh;
+}
+
+.kotaklogin {
+background-color:white;
+padding:30px;
+width:280px;
+border-radius:25px;
+text-align:center;
+margin-bottom:10px;
+box-shadow:0 0 20px 0 rgb(95,95,95);
+}
+
+.tombollog {
+background-color:rgb(0,157,255);
+padding:15px;
+border-radius:15px;
+text-decoration:none;
+display:block;
+color:white;
+font-weight:bold;
+font-family:arial;
+max-width:140px;
+margin:0 auto;
+box-shadow:0 0px 10px 0 rgb(31,143,255);
+transition:all 0.3s ease;
+border:none;
+cursor:pointer;
+font-size:16px;
+}
+
+.tombollog:hover {
+background-color:rgb(0,130,211);
+box-shadow:0 8px 20px rgba(0,101,203,0.4);
+transform:translateY(-3px);
+}
+
+.tombollog:active {
+transform:translateY(1px) scale(0.97);
+box-shadow:0 4px 10px rgba(0,101,203,0.3);
+}
+
+.email, .password {
+border-radius:10px;
+padding:10px;
+border:2px solid rgb(156,214,251);
+outline:none;
+width:70%;
+transition:all 0.3s ease;
+}
+
+.email:focus, .password:focus {
+border-color:rgb(0,157,255);
+box-shadow:0 0 0 4px rgba(0,157,255,0.2);
+}
+
+.peringatan {
+color:red;
+font-size:13px;
+margin:10px 0;
+font-family:coolvetica;
+display:none;
+}
+
+.signup {
+text-decoration:none;
+color:rgb(0,157,255);
+transition:color 0.2s ease;
+}
+
+.signup:hover {
+color:rgb(0,130,211);
+text-decoration:underline;
+}
+
+.google-box, .github-box, .discord-box, .apple-box {
+border:2px solid rgb(156,214,251);
+display:flex;
+border-radius:10px;
+width:35px;
+height:35px;
+justify-content:center;
+align-items:center;
+background-color:#d7f0ff;
+transition:all 0.3s ease;
+cursor:pointer;
+}
+
+.google-box:hover, .github-box:hover, .discord-box:hover, .apple-box:hover {
+background-color:#a8daf9;
+transform:translateY(-3px);
+box-shadow:0 4px 10px rgba(0,157,255,0.3);
+}
+
+.google-box:active, .github-box:active, .discord-box:active, .apple-box:active {
+transform:translateY(0) scale(0.95);
+}
+
+.google {width:24px;}
+.github {width:24px;}
+.discord {width:24px;}
+.apple {width:24px;}
+
+.wadahakun {
+display:flex;
+justify-content:center;
+gap:15px;
+margin:15px 0;
+}
+
+</style>
+
+<body>
+
+<div class="kotaklogin">
+
+<h1 style="text-align:center; font-family:coolvetica; color:#3f3f3f;">
+Hello, <span style="color:rgb(0,157,255); font-family:coolvetica; font-weight:bold;">Pineco</span>!
+</h1>
+
+<br>
+
+<p style="text-align:center; font-family:coolvetica;">
+Log in to get started
+</p>
+
+<br>
+
+<div class="login">
+
+<input class="email" id="email" type="email" placeholder="Enter your Email">
+
+<br>
+<br>
+
+<input class="password" id="password" type="password" placeholder="Enter your Password">
+
+<br>
+
+<div class="peringatan" id="pesanPeringatan">
+⚠️ Harap isi Email & Password dulu!
+</div>
+
+<div class="wadahakun">
+
+<div class="google-box">
+<a href="#"><img src="google.png" alt="google" class="google"></a>
+</div>
+
+<div class="github-box">
+<a href="#"><img src="github.png" alt="github" class="github"></a>
+</div>
+
+<div class="discord-box">
+<a href="#"><img src="discord.png" alt="discord" class="discord"></a>
+</div>
+
+<div class="apple-box">
+<a href="#"><img src="apple.png" alt="apple" class="apple"></a>
+</div>
+
+</div>
+
+<p style="font-family:coolvetica;">
+Don't have an account?
+<a href="signup.html" class="signup">Sign up</a>
+</p>
+
+<br>
+
+<button class="tombollog" onclick="cekLogin()">LOGIN</button>
+
+</div>
+
+</div>
+
+</body>
+
+<script>
+
+function cekLogin() {
+
+let email = document.getElementById("email").value;
+let password = document.getElementById("password").value;
+let peringatan = document.getElementById("pesanPeringatan");
+
+if (email == "" || password == "") {
+
+peringatan.style.display = "block";
+
+} else {
+
+peringatan.style.display = "none";
+
+localStorage.setItem("emailPengguna", email);
+localStorage.setItem("passwordPengguna", password);
+
+alert("Berhasil! Selamat datang, " + email + "!");
+
+window.location.href = "home-page.html";
+
+}
+
+}
+
+</script>
+
+</html>
+```
